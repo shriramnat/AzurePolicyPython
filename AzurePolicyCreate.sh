@@ -3,9 +3,11 @@ POLICY=$(python AzurePolicyCreate.py)
 # Login to Azure. Comment this line out if already logged in
 azure login -e AzureCloud
 
+# Create a Resource Group
 RESOURCEGROUPID=$(azure group create shnatarapolicy32 westus --json | jq -r .id)
 echo "Created Resource Group with ID " $RESOURCEGROUPID
 
+# Create a Policy Definition
 POLICYID=$(azure policy definition create --name AzureStackPolicy --description "Policy to allow only Azure Stack compatible resources to be created" --policy-string "$POLICY" --json | jq -r '.id')
 echo "Created Policy Definition with ID " $POLICYID
 
