@@ -1,4 +1,5 @@
 import json
+import sys
 
 def returnAllowedResources(equalsOrLike,equalsOrLikeValue):
     data = {}
@@ -34,10 +35,11 @@ def main():
     policy='{"then":{"effect":"deny"},"if":{"not":{"allOf":[{"anyOf":%s},{"not":{"anyOf":[{"allOf":[{"exists":"true","field":"%s"},{"not":{"in":%s,"field":"%s"}}]},{"allOf":[{"exists":"true","field":"%s"},{"not":{"in":%s,"field":"%s"}}]}]}}]}}}' %(json.dumps(allowResources),vmSkuField,json.dumps(vmSkus),vmSkuField,storageSkuField,json.dumps(storageSkus),storageSkuField)
 
     # Create a JSON file
-    with open('AzureStackPolicy.json', 'w') as text_file:
-        text_file.write(policy)
+    # with open('AzureStackPolicy.json', 'w') as text_file:
+    #     text_file.write(policy)
     
-    return json.dumps(policy)
+    print policy
+    sys.exit(0)
 
 if __name__ == "__main__":
      # if you call this script from the command line (the shell) it will
