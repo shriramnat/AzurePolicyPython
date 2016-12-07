@@ -4,7 +4,7 @@ POLICY=$(python AzurePolicyCreate.py)
 azure login -e AzureCloud
 
 # Create a Resource Group
-RESOURCEGROUPID=$(azure group create shnatarapolicy32 westus --json | jq -r .id)
+RESOURCEGROUPID=$(azure group create shnatarapolicy34 westus --json | jq -r .id)
 echo "Created Resource Group with ID " $RESOURCEGROUPID
 
 # Create a Policy Definition
